@@ -6,9 +6,33 @@ Files: public/model.gltf [1.62MB] > model-transformed.glb [26.12KB] (98%)
 
 import React from "react";
 import { useGLTF } from "@react-three/drei";
+import { useLoader } from "@react-three/fiber";
+import { Mesh, MeshBasicMaterial, PlaneGeometry, TextureLoader } from "three";
 
 export function Model(props) {
-  const { nodes } = useGLTF("/model-transformed.glb");
+  const { nodes } = useGLTF(
+    "https://mrpmodel.vercel.app/model-transformed.glb",
+  );
+
+  const logoTexture = useLoader(TextureLoader, "/mrpcrop.png");
+
+  // Create a custom geometry for the transparent rectangle (e.g., a plane)
+  const logoGeometry = new PlaneGeometry(15, 4.3); // Adjust the size as needed
+
+  // Apply the logo image texture to the transparent rectangle's material
+  const logoMaterial = new MeshBasicMaterial({
+    map: logoTexture,
+    transparent: true, // Enable transparency
+    opacity: 1, // Adjust opacity as needed
+  });
+
+  // Create the logo mesh
+  const logoMesh = new Mesh(logoGeometry, logoMaterial);
+
+  // Position the logo mesh on the 3D model
+  logoMesh.position.set(-0.4, 1.55, 0); // Adjust x, y, and z coordinates as needed
+  logoMesh.rotation.set(-Math.PI / 2, 0, 0); // Adjust rotation as needed
+
   return (
     <group {...props} dispose={null} scale={0.1}>
       <mesh
@@ -18,6 +42,7 @@ export function Model(props) {
         material-roughness={0.5}
         material-metalness={0.8}
       />
+      <primitive object={logoMesh} />
     </group>
   );
 }
