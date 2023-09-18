@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { Model } from "./Model";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
+import { Suspense } from "react";
+import useSound from "use-sound";
 
 function App() {
+  const [play, { stop }] = useSound("skate.mp3");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ height: "100vh" }}>
+      <Canvas
+        camera={{ position: [5, 5, 5], zoom: 1 }}
+        style={{ cursor: "move", height: "100%" }}
+        onPointerDown={() => {
+          play();
+        }}
+        onPointerUp={() => {
+          stop();
+        }}
+        onMouseLeave={() => {
+          stop();
+        }}
+      >
+        <OrbitControls autoRotate={true} enableZoom={false} />
+        <ambientLight intensity={2} />
+
+        <directionalLight position={[0, 10, 0]} intensity={3} />
+        <directionalLight position={[10, -10, 10]} intensity={2} />
+        <directionalLight position={[-10, -10, 10]} intensity={1} />
+
+        {/*<OrbitControls />*/}
+        <Suspense fallback={null}>
+          <Model />
+        </Suspense>
+      </Canvas>
     </div>
   );
 }
