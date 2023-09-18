@@ -3,13 +3,14 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { Suspense } from "react";
 import useSound from "use-sound";
+import { isMobile } from "react-device-detect";
 
 function App() {
   const [play, { stop }] = useSound("https://mrpmodel.vercel.app/skate.mp3");
 
   return (
     <Canvas
-      camera={{ position: [5, 5, 5], zoom: 1 }}
+      camera={{ position: [5, 5, 5], zoom: isMobile ? 0.5 : 1 }}
       style={{ cursor: "move", height: "100%" }}
       onPointerDown={() => {
         play();
