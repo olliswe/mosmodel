@@ -10,7 +10,7 @@ function App() {
 
   return (
     <Canvas
-      camera={{ position: [5, 5, 5], zoom: isMobile ? 0.5 : 1 }}
+      camera={{ position: [5, 5, 5], zoom: isMobile ? 0.65 : 1 }}
       style={{ cursor: "move", height: "100%" }}
       onPointerDown={() => {
         play();
