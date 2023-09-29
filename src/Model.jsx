@@ -14,7 +14,7 @@ export function Model(props) {
     "https://mrpmodel.vercel.app/model-transformed.glb",
   );
 
-  const logoTexture = useLoader(TextureLoader, "/mrpcrop.png");
+  const logoTexture = useLoader(TextureLoader, "https://mrpmodel.vercel.app/mrpcrop.png");
 
   // Create a custom geometry for the transparent rectangle (e.g., a plane)
   const logoGeometry = new PlaneGeometry(15, 4.3); // Adjust the size as needed
