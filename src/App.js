@@ -12,14 +12,18 @@ function ZoomIn() {
 }
 function App() {
   const [play, { stop }] = useSound("https://mrpmodel.vercel.app/skate.mp3");
+  const [playIntro] = useSound("https://mrpmodel.vercel.app/intro.mp3");
+  const [playHum] = useSound("https://mrpmodel.vercel.app/background-hum.mp3");
   const [autoRotate, setAutoRotate] = useState(true);
   const orbitControlsRef = useRef();
   const canvasRef = useRef();
   const [zoomIn, setZoomIn] = useState(false);
+  const [hover, setHover] = useState(false);
 
   const handleEnter = () => {
     setAutoRotate(false);
     setAutoRotate(false);
+    playHum();
     if (orbitControlsRef.current) {
       console.log(orbitControlsRef.current);
       orbitControlsRef.current.setAzimuthalAngle(0);
@@ -85,8 +89,14 @@ function App() {
           fontWeight: 500,
           fontSize: 14,
           boxShadow: "rgba(0, 0, 0, 0.05) 0px 1px 0px 0px",
+          ...(hover ? { background: "rgba(255,255,255,0.7)" } : {}),
         }}
         onClick={() => handleEnter()}
+        onMouseEnter={() => {
+          playIntro();
+          setHover(true);
+        }}
+        onMouseLeave={() => setHover(false)}
       >
         ENTER
       </button>
