@@ -31,7 +31,7 @@ function App() {
       setZoomIn(true);
     }
     setTimeout(() => {
-      window.location.href = "https://www.metalriserpads.com/";
+      document.getElementById("modelcontainer").style.display = "none";
     }, 1200);
   };
 
@@ -100,7 +100,6 @@ function App() {
       >
         ENTER
       </button>
-      <Loader />
     </>
   );
 }
