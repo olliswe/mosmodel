@@ -1,6 +1,6 @@
 import { Model } from "./Model";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, Loader } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import { Suspense, useEffect, useRef, useState } from "react";
 import useSound from "use-sound";
 import { isMobile } from "react-device-detect";
@@ -35,8 +35,9 @@ function App() {
       setZoomIn(true);
     }
     setTimeout(() => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "visible";
       document.getElementById("modelcontainer").style.display = "none";
+      document.getElementById("mrpmodel").style.display = "none";
     }, 1200);
   };
 
