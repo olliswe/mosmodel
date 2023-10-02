@@ -13,7 +13,6 @@ function ZoomIn() {
 function App() {
   const [play, { stop }] = useSound("https://mrpmodel.vercel.app/skate.mp3");
   const [playIntro] = useSound("https://mrpmodel.vercel.app/intro.mp3");
-  const [playHum] = useSound("https://mrpmodel.vercel.app/background-hum.mp3");
   const [autoRotate, setAutoRotate] = useState(true);
   const orbitControlsRef = useRef();
   const canvasRef = useRef();
@@ -27,7 +26,6 @@ function App() {
   const handleEnter = () => {
     setAutoRotate(false);
     setAutoRotate(false);
-    playHum();
     if (orbitControlsRef.current) {
       console.log(orbitControlsRef.current);
       orbitControlsRef.current.setAzimuthalAngle(0);
